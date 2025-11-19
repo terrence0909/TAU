@@ -40,7 +40,7 @@ const CV = () => {
                   Download CV (PDF)
                 </button>
                 <div className="text-gray-400 text-sm">
-                  Updated: October 2024 • Skills-Based CV
+                  Updated: October 2025 • Skills-Based CV
                 </div>
               </div>
             </div>
