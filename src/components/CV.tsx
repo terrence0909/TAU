@@ -13,13 +13,13 @@ const CV = () => {
   };
 
   return (
-    <section id="cv" className="py-20 px-6 bg-gray-800">
+    <section id="cv" className="py-20 px-2 sm:px-6 bg-gray-800">
       <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-gray-700/50 border border-gray-600 rounded-lg p-8 md:p-12">
+        <div className="w-full mx-auto px-0">
+          <div className="bg-gray-700/50 border border-gray-600 rounded-lg p-6 sm:p-8 md:p-12">
             <div className="text-center mb-8">
-              <div className="inline-block p-4 bg-blue-500/10 rounded-full mb-6 border border-blue-500/20">
-                <FileText className="w-12 h-12 text-blue-400" />
+              <div className="inline-block p-4 bg-slate-700/40 rounded-full mb-6 border border-slate-600">
+                <FileText className="w-12 h-12 text-slate-300" />
               </div>
               
               <h2 className="text-3xl md:text-4xl font-light text-white mb-4 tracking-tight">
@@ -46,10 +46,10 @@ const CV = () => {
             </div>
 
             {/* CV Preview Sections */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-gray-600">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 pt-8 border-t border-gray-600">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full mb-3">
-                  <Code2 className="w-6 h-6 text-blue-400" />
+                  <Code2 className="w-6 h-6 text-slate-300" />
                 </div>
                 <h3 className="text-white font-medium mb-2">Proven Skills</h3>
                 <p className="text-gray-400 text-sm">
@@ -62,7 +62,7 @@ const CV = () => {
 
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full mb-3">
-                  <TrendingUp className="w-6 h-6 text-green-400" />
+                  <TrendingUp className="w-6 h-6 text-slate-300" />
                 </div>
                 <h3 className="text-white font-medium mb-2">Career Journey</h3>
                 <p className="text-gray-400 text-sm">
@@ -75,7 +75,7 @@ const CV = () => {
 
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-12 h-12 bg-gray-600 rounded-full mb-3">
-                  <Award className="w-6 h-6 text-yellow-400" />
+                  <Award className="w-6 h-6 text-slate-300" />
                 </div>
                 <h3 className="text-white font-medium mb-2">Certifications</h3>
                 <p className="text-gray-400 text-sm">
@@ -90,21 +90,21 @@ const CV = () => {
             {/* What's Included */}
             <div className="mt-8 pt-8 border-t border-gray-600">
               <h3 className="text-white font-medium mb-4 text-center">CV Highlights:</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div className="flex items-center gap-3 text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   AWS Solutions Architect - Associate
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   ArtBurst & real project case studies
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   Infrastructure as code expertise
                 </div>
                 <div className="flex items-center gap-3 text-gray-300">
-                  <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                  <div className="w-2 h-2 bg-slate-400 rounded-full"></div>
                   Career transition success story
                 </div>
               </div>
