@@ -1,4 +1,4 @@
-import { Award, CheckCircle, ExternalLink, ChevronDown, Image as ImageIcon, X } from "lucide-react";
+import { CheckCircle, ExternalLink, X } from "lucide-react";
 import { FaAws } from "react-icons/fa";
 import { SiKubernetes } from "react-icons/si";
 import { useState } from "react";
@@ -9,77 +9,48 @@ const CertificationCard = ({ cert, onOpenModal }) => {
   const getBadgeColor = (level: string) => {
     switch (level) {
       case "Associate":
-        return "bg-slate-700/40 text-slate-300 border-slate-600";
+        return "bg-slate-700/40 text-slate-300 border border-slate-600";
       case "Foundational":
-        return "bg-slate-700/30 text-slate-400 border-slate-700";
+        return "bg-slate-700/30 text-slate-400 border border-slate-600";
       case "Program":
-        return "bg-slate-700/35 text-slate-300 border-slate-650";
+        return "bg-slate-700/35 text-slate-300 border border-slate-600";
       default:
-        return "bg-slate-700/40 text-slate-300 border-slate-600";
+        return "bg-slate-700/40 text-slate-300 border border-slate-600";
     }
   };
 
   return (
     <button
       onClick={() => onOpenModal(cert)}
-      className="bg-gray-700/40 border border-gray-600 rounded-lg overflow-hidden transition-all duration-300 hover:border-gray-500 hover:bg-gray-700/50 text-left group cursor-pointer"
+      className="bg-gray-700/40 border border-gray-600 rounded-lg p-6 transition-all duration-300 hover:border-gray-500 hover:bg-gray-700/60 text-left group cursor-pointer"
     >
-      {/* Card Content */}
-      <div className="p-6 flex items-start gap-4">
-        <div className="p-3 bg-gray-600/40 rounded-lg border border-gray-600 flex-shrink-0 group-hover:border-gray-500 transition-colors duration-200">
+      <div className="flex items-start gap-4 mb-4">
+        <div className="p-3 bg-gray-600/40 rounded-lg border border-gray-600 flex-shrink-0">
           {cert.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <h3 className="text-white text-base font-medium leading-tight mb-1">
+          <h3 className="text-white text-base font-medium leading-tight mb-1 group-hover:text-slate-100 transition-colors">
             {cert.title}
           </h3>
-          <p className="text-gray-400 text-sm mb-3">{cert.org}</p>
-
-          <div className="flex items-center gap-3 flex-wrap">
-            <span
-              className={`text-xs px-3 py-1 rounded-full border ${getBadgeColor(
-                cert.level
-              )}`}
-            >
-              {cert.level}
-            </span>
-            <span className="text-gray-500 text-xs">{cert.year}</span>
-          </div>
+          <p className="text-gray-400 text-sm">{cert.org}</p>
         </div>
       </div>
 
-      {/* Hover Reveal Info (Desktop) */}
-      <div className="hidden md:block px-6 pb-4 pt-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 max-h-0 group-hover:max-h-96 overflow-hidden">
-        <div className="border-t border-gray-600 pt-4">
-          <p className="text-gray-300 text-xs leading-relaxed mb-3">
-            {cert.description}
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {cert.skills.slice(0, 3).map((skill, i) => (
-              <span
-                key={i}
-                className="px-2 py-0.5 text-xs bg-gray-700/50 text-gray-300 rounded border border-gray-600"
-              >
-                {skill}
-              </span>
-            ))}
-            {cert.skills.length > 3 && (
-              <span className="px-2 py-0.5 text-xs text-gray-400">
-                +{cert.skills.length - 3} more
-              </span>
-            )}
-          </div>
-          <p className="text-slate-400 text-xs mt-3">Click to view full details →</p>
-        </div>
+      <div className="flex items-center gap-3 flex-wrap">
+        <span className={`text-xs px-3 py-1 rounded-full border ${getBadgeColor(cert.level)}`}>
+          {cert.level}
+        </span>
+        <span className="text-gray-500 text-xs">{cert.year}</span>
       </div>
 
-      {/* Footer */}
-      <div className="px-6 py-3 border-t border-gray-600/50 bg-gray-800/30 flex items-center justify-between">
+      <div className="mt-4 pt-4 border-t border-gray-600/50 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <CheckCircle className="w-4 h-4 text-slate-500" />
           <span className="text-slate-400 text-xs">Verified</span>
         </div>
-        <span className="text-slate-500 text-xs md:hidden">Tap to expand</span>
+        <span className="text-slate-500 text-xs group-hover:text-slate-400 transition-colors">
+          View details →
+        </span>
       </div>
     </button>
   );
@@ -89,13 +60,13 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
   const getBadgeColor = (level: string) => {
     switch (level) {
       case "Associate":
-        return "bg-slate-700/40 text-slate-300 border-slate-600";
+        return "bg-slate-700/40 text-slate-300 border border-slate-600";
       case "Foundational":
-        return "bg-slate-700/30 text-slate-400 border-slate-700";
+        return "bg-slate-700/30 text-slate-400 border border-slate-600";
       case "Program":
-        return "bg-slate-700/35 text-slate-300 border-slate-650";
+        return "bg-slate-700/35 text-slate-300 border border-slate-600";
       default:
-        return "bg-slate-700/40 text-slate-300 border-slate-600";
+        return "bg-slate-700/40 text-slate-300 border border-slate-600";
     }
   };
 
@@ -103,29 +74,25 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
 
   return (
     <>
-      {/* Backdrop */}
       <div
         className="fixed inset-0 bg-black/50 z-40 transition-opacity duration-300"
         onClick={onClose}
       />
 
-      {/* Modal */}
-      <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-4">
+      <div className="fixed inset-0 z-50 flex items-end md:items-center justify-center p-4 pointer-events-none">
         <div
-          className="bg-gray-800 border border-gray-600 rounded-lg w-full md:w-96 max-h-[90vh] overflow-y-auto animate-in slide-in-from-bottom md:slide-in-from-center duration-300"
+          className="bg-gray-800 border border-gray-600 rounded-lg w-full md:w-96 max-h-[90vh] overflow-y-auto pointer-events-auto animate-in slide-in-from-bottom md:slide-in-from-center duration-300"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Modal Header */}
-          <div className="sticky top-0 bg-gray-800 border-b border-gray-600 p-6 flex items-start justify-between">
+          <div className="sticky top-0 bg-gray-800 border-b border-gray-600 p-6 flex items-start justify-between gap-4">
             <div className="flex-1">
-              <h2 className="text-white text-lg font-medium leading-tight">
-                {cert.title}
-              </h2>
-              <p className="text-gray-400 text-sm mt-1">{cert.org}</p>
+              <h2 className="text-white text-lg font-medium leading-tight">{cert.title}</h2>
+              <p className="text-gray-400 text-sm mt-2">{cert.org}</p>
             </div>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-white transition-colors flex-shrink-0 -mt-1"
+              className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
@@ -135,11 +102,7 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
           <div className="p-6 space-y-6">
             {/* Badge and Year */}
             <div className="flex items-center gap-3 flex-wrap">
-              <span
-                className={`text-xs px-3 py-1 rounded-full border ${getBadgeColor(
-                  cert.level
-                )}`}
-              >
+              <span className={`text-xs px-3 py-1 rounded-full border ${getBadgeColor(cert.level)}`}>
                 {cert.level}
               </span>
               <span className="text-gray-500 text-sm">{cert.year}</span>
@@ -151,9 +114,7 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
 
             {/* Description */}
             <div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                {cert.description}
-              </p>
+              <p className="text-gray-300 text-sm leading-relaxed">{cert.description}</p>
             </div>
 
             {/* Skills */}
@@ -184,9 +145,8 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
                     href={cert.certificate}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-700/50 text-slate-300 hover:text-white border border-gray-600 hover:border-gray-500 rounded transition-colors duration-200"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-gray-700/50 text-slate-300 hover:text-white hover:bg-gray-700 border border-gray-600 rounded transition-all duration-200"
                   >
-                    <ImageIcon className="w-4 h-4" />
                     <span>View PDF Certificate</span>
                     <ExternalLink className="w-3 h-3" />
                   </a>
@@ -195,12 +155,12 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
                     href={cert.certificate}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block"
+                    className="block group"
                   >
                     <img
                       src={cert.certificate}
                       alt={`${cert.title} Certificate`}
-                      className="w-full max-h-64 object-cover rounded border border-gray-600 hover:border-gray-500 transition-colors duration-200"
+                      className="w-full max-h-64 object-cover rounded border border-gray-600 group-hover:border-gray-500 transition-colors duration-200"
                     />
                   </a>
                 )}
@@ -213,7 +173,7 @@ const CertificationModal = ({ cert, isOpen, onClose }) => {
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors duration-200"
+                className="inline-flex items-center gap-2 text-sm text-slate-300 hover:text-white transition-colors duration-200 pt-2"
               >
                 <CheckCircle className="w-4 h-4" />
                 <span>Verify on Credly</span>
@@ -321,7 +281,7 @@ const Certifications = () => {
   );
 
   return (
-    <section id="certifications" className="py-20 px-6 bg-gray-800">
+    <section id="certifications" className="py-20 px-2 sm:px-6 bg-gray-800">
       <div className="container mx-auto">
         <div className="mb-12">
           <h2 className="text-3xl md:text-4xl font-light text-white mb-4 text-center tracking-tight">
@@ -356,22 +316,14 @@ const Certifications = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 sm:gap-6 w-full mx-auto px-0">
           {filteredCerts.map((cert) => (
-            <CertificationCard
-              key={cert.id}
-              cert={cert}
-              onOpenModal={setSelectedCert}
-            />
+            <CertificationCard key={cert.id} cert={cert} onOpenModal={setSelectedCert} />
           ))}
         </div>
 
         {/* Modal */}
-        <CertificationModal
-          cert={selectedCert}
-          isOpen={!!selectedCert}
-          onClose={() => setSelectedCert(null)}
-        />
+        <CertificationModal cert={selectedCert} isOpen={!!selectedCert} onClose={() => setSelectedCert(null)} />
 
         {/* Footer Message */}
         <div className="mt-12 text-center">

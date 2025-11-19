@@ -25,7 +25,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 px-6 bg-gray-900">
+    <section id="about" className="py-20 px-2 sm:px-6 bg-gray-900">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-light text-white mb-4 text-center tracking-tight">
           Expertise & Skills
@@ -39,7 +39,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-6 w-full mx-auto px-0">
           {skills.map((skill, index) => (
             <div
               key={index}

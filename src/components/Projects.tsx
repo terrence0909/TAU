@@ -35,7 +35,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-6 bg-gray-900">
+    <section id="projects" className="py-20 px-1 sm:px-6 bg-gray-900">
       <div className="container mx-auto">
         <h2 className="text-3xl md:text-4xl font-light text-white mb-4 text-center tracking-tight">
           Featured Projects
@@ -44,7 +44,7 @@ const Projects = () => {
           Real-world cloud solutions with measurable impact and results
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-8 w-full mx-auto px-0">
           {projects.map((project, index) => (
             <div
               key={index}
@@ -102,7 +102,7 @@ const Projects = () => {
                     href={project.live}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-blue-400 transition-colors duration-200"
+                    className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-200"
                   >
                     <ExternalLink size={16} />
                     {project.live === "#" ? "Coming Soon" : "Live Demo"}
