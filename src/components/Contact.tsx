@@ -84,7 +84,7 @@ const ContactCard = ({
     isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
   }`;
 
-  const cardClass = `bg-gray-800 border border-gray-700 p-4 rounded-lg transition-all duration-300`;
+  const cardClass = `bg-gray-800 border border-gray-700 p-3 sm:p-4 rounded-lg transition-all duration-300`;
   const iconClass = `p-2 rounded-lg border border-gray-600 ${contact.color} transition-colors`;
 
   if (contact.copyable && contact.href) {
@@ -95,19 +95,19 @@ const ContactCard = ({
         style={{ transitionDelay: isVisible ? `${index * 50}ms` : "0ms" }}
         aria-label={`Copy ${contact.label}`}
       >
-        <div className="flex items-start gap-3">
-          <div className={`${iconClass} group-hover:border-gray-500`}>
+        <div className="flex items-start gap-2 sm:gap-3">
+          <div className={`${iconClass} group-hover:border-gray-500 flex-shrink-0`}>
             {contact.icon}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">
+            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5 sm:mb-1">
               {contact.label}
             </p>
-            <p className="text-sm text-gray-300 group-hover:text-white transition-colors break-all">
+            <p className="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors break-all">
               {contact.value}
             </p>
           </div>
-          <div className="flex-shrink-0 ml-2">
+          <div className="flex-shrink-0">
             {isCopied ? (
               <Check className="w-4 h-4 text-emerald-400" />
             ) : (
@@ -129,15 +129,15 @@ const ContactCard = ({
         style={{ transitionDelay: isVisible ? `${index * 50}ms` : "0ms" }}
         aria-label={`Visit ${contact.label}`}
       >
-        <div className="flex items-start gap-3">
-          <div className={`${iconClass} group-hover:border-gray-500`}>
+        <div className="flex items-start gap-2 sm:gap-3">
+          <div className={`${iconClass} group-hover:border-gray-500 flex-shrink-0`}>
             {contact.icon}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">
+            <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5 sm:mb-1">
               {contact.label}
             </p>
-            <p className="text-sm text-gray-300 group-hover:text-white transition-colors break-all">
+            <p className="text-xs sm:text-sm text-gray-300 group-hover:text-white transition-colors break-all">
               {contact.value}
             </p>
           </div>
@@ -151,15 +151,15 @@ const ContactCard = ({
       className={`${baseClass} ${cardClass}`}
       style={{ transitionDelay: isVisible ? `${index * 50}ms` : "0ms" }}
     >
-      <div className="flex items-start gap-3">
-        <div className={iconClass}>
+      <div className="flex items-start gap-2 sm:gap-3">
+        <div className={`${iconClass} flex-shrink-0`}>
           {contact.icon}
         </div>
         <div className="flex-1 min-w-0">
-          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-1">
+          <p className="text-xs text-gray-500 font-medium uppercase tracking-wide mb-0.5 sm:mb-1">
             {contact.label}
           </p>
-          <p className="text-sm text-gray-300 break-all">
+          <p className="text-xs sm:text-sm text-gray-300 break-all">
             {contact.value}
           </p>
         </div>
@@ -219,24 +219,24 @@ const Contact = () => {
   }, []);
 
   return (
-    <section id="contact" className="py-20 px-2 sm:px-6 bg-gray-900">
+    <section id="contact" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gray-900">
       <div className="container mx-auto">
-        <h2 className={`text-3xl md:text-4xl font-light text-white mb-4 text-center tracking-tight transition-all duration-1000 ${
+        <h2 className={`text-3xl sm:text-4xl md:text-5xl font-light text-white mb-2 sm:mb-4 text-center tracking-tight transition-all duration-1000 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}>
           Get In Touch
         </h2>
-        <p className={`text-center text-gray-400 mb-12 max-w-2xl mx-auto text-lg font-light transition-all duration-1000 delay-200 ${
+        <p className={`text-center text-gray-400 mb-8 sm:mb-12 max-w-2xl mx-auto text-xs sm:text-base md:text-lg font-light transition-all duration-1000 delay-200 ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}>
           Open to new opportunities and collaborations in cloud engineering
         </p>
 
         <div className="w-full max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
             {/* Contact Information */}
-            <div className="lg:col-span-1 space-y-4">
-              <h3 className={`text-white font-medium mb-6 transition-all duration-1000 delay-300 ${
+            <div className="lg:col-span-1 space-y-2.5 sm:space-y-3">
+              <h3 className={`text-white font-medium mb-4 sm:mb-6 text-sm sm:text-base transition-all duration-1000 delay-300 ${
                 isVisible ? "opacity-100" : "opacity-0"
               }`}>Contact Details</h3>
               {CONTACT_INFO.map((contact, index) => (
@@ -251,12 +251,12 @@ const Contact = () => {
               ))}
 
               {/* Availability Status */}
-              <div className={`pt-4 border-t border-gray-700 mt-8 transition-all duration-1000 delay-500 ${
+              <div className={`pt-3 sm:pt-4 border-t border-gray-700 mt-6 sm:mt-8 transition-all duration-1000 delay-500 ${
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}>
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-gray-400">Available for opportunities</span>
+                  <span className="text-xs sm:text-sm text-gray-400">Available for opportunities</span>
                 </div>
                 <p className="text-xs text-gray-500 mt-2">
                   Response time: Within 24 hours
@@ -270,14 +270,14 @@ const Contact = () => {
             }`}>
               <form
                 onSubmit={handleSubmit}
-                className="bg-gray-800 border border-gray-700 p-8 rounded-lg"
+                className="bg-gray-800 border border-gray-700 p-4 sm:p-6 md:p-8 rounded-lg"
                 noValidate
               >
-                <h3 className="text-white font-medium mb-6">Send a Message</h3>
+                <h3 className="text-white font-medium mb-4 sm:mb-6 text-sm sm:text-base">Send a Message</h3>
 
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                       Name
                     </label>
                     <input
@@ -287,14 +287,14 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-slate-500 transition-colors duration-200"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-slate-500 transition-colors duration-200 text-sm"
                       placeholder="Your name"
                       aria-label="Your name"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                       Email
                     </label>
                     <input
@@ -304,14 +304,14 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-2.5 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-slate-500 transition-colors duration-200"
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-slate-500 transition-colors duration-200 text-sm"
                       placeholder="your@email.com"
                       aria-label="Your email"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                    <label htmlFor="message" className="block text-xs sm:text-sm font-medium text-gray-300 mb-1.5 sm:mb-2">
                       Message
                     </label>
                     <textarea
@@ -320,8 +320,8 @@ const Contact = () => {
                       required
                       value={formData.message}
                       onChange={handleInputChange}
-                      rows={5}
-                      className="w-full px-4 py-2.5 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-slate-500 transition-colors duration-200 resize-none"
+                      rows={4}
+                      className="w-full px-3 sm:px-4 py-2 sm:py-2.5 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-slate-500 transition-colors duration-200 resize-none text-sm"
                       placeholder="Tell me about your project or opportunity..."
                       aria-label="Your message"
                     />
@@ -331,7 +331,7 @@ const Contact = () => {
                     type="submit"
                     disabled={formStatus === "sending"}
                     aria-live="polite"
-                    className={`w-full py-3 rounded-lg font-medium transition-all duration-300 ${
+                    className={`w-full py-2.5 sm:py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
                       formStatus === "success"
                         ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                         : formStatus === "error"
