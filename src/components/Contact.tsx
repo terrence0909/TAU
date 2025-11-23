@@ -65,8 +65,7 @@ const Contact = () => {
     setFormStatus("sending");
 
     try {
-      // Replace with your actual form submission endpoint
-      const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+      const response = await fetch("https://formspree.io/f/mwpzyvob", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -271,11 +270,6 @@ const Contact = () => {
                   </button>
                 </div>
               </form>
-
-              {/* Form Note */}
-              <p className="text-xs text-gray-500 mt-4 text-center">
-                Note: Replace the form endpoint with your Formspree URL or backend service
-              </p>
             </div>
           </div>
         </div>
