@@ -393,7 +393,7 @@ const Certifications = () => {
 
         {/* Certifications Grid */}
         {filteredCerts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-3 sm:gap-4 md:gap-6 w-full max-w-3xl mx-auto px-0">
+          <div className="grid grid-cols-1 gap-4 sm:gap-4 md:gap-6 w-full mx-auto px-0 max-w-2xl lg:max-w-4xl">
             {filteredCerts.map((cert, index) => (
               <CertificationCard 
                 key={cert.id} 
