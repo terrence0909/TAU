@@ -1,64 +1,78 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+
+const NAV_LINKS = [
+  { href: "#about", label: "About" },
+  { href: "#certifications", label: "Certifications" },
+  { href: "#projects", label: "Projects" },
+  { href: "#cv", label: "CV" },
+  { href: "#contact", label: "Contact" },
+];
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
-  const navigate = useNavigate();
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    // Use Intersection Observer for better performance
+    const observerOptions = {
+      root: null,
+      rootMargin: "-100px 0px -66% 0px",
+      threshold: 0,
+    };
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    const sections = NAV_LINKS.map((link) => link.href.substring(1));
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element && observerRef.current) {
+        observerRef.current.observe(element);
+      }
+    });
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
-
-      // Determine active section
-      const sections = ["about", "certifications", "projects", "cv", "contact"];
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { href: "#about", label: "About" },
-    { href: "#certifications", label: "Certifications" },
-    { href: "#projects", label: "Projects" },
-    { href: "#cv", label: "CV" },
-    { href: "#contact", label: "Contact" },
-  ];
-
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
-    const href = e.currentTarget.getAttribute("href");
-    if (href) {
-      const sectionId = href.substring(1); // Remove the #
-      // Update URL with React Router
-      navigate(`/#${sectionId}`);
-      // Scroll to section
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-        setIsMobileMenuOpen(false);
-      }
+    const sectionId = href.substring(1);
+    const element = document.getElementById(sectionId);
+    
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+      // Update URL hash
+      window.history.pushState(null, "", href);
     }
   };
 
   const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    // Update URL and scroll to top
-    navigate("/#");
     window.scrollTo({ top: 0, behavior: "smooth" });
+    window.history.pushState(null, "", "/");
+    setIsMobileMenuOpen(false);
   };
 
   return (
@@ -82,14 +96,15 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => {
+            {NAV_LINKS.map((link) => {
               const sectionId = link.href.substring(1);
               const isActive = activeSection === sectionId;
               return (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={handleNavClick}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    aria-current={isActive ? "page" : undefined}
                     className={`relative text-sm font-medium tracking-wide transition-colors duration-200 ${
                       isActive ? "text-white" : "text-gray-400 hover:text-white"
                     }`}
@@ -108,7 +123,8 @@ const Navigation = () => {
           <button
             className="md:hidden text-gray-300 hover:text-white transition-colors duration-200"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle mobile menu"
+            aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -118,14 +134,15 @@ const Navigation = () => {
         {isMobileMenuOpen && (
           <div className="md:hidden mt-4 animate-in fade-in slide-in-from-top-2 duration-300 bg-gray-800/95 backdrop-blur-sm rounded-lg p-6 border border-gray-700">
             <ul className="space-y-2">
-              {navLinks.map((link) => {
+              {NAV_LINKS.map((link) => {
                 const sectionId = link.href.substring(1);
                 const isActive = activeSection === sectionId;
                 return (
                   <li key={link.href}>
                     <a
                       href={link.href}
-                      onClick={handleNavClick}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      aria-current={isActive ? "page" : undefined}
                       className={`block py-3 px-4 rounded-lg transition-all duration-200 font-medium ${
                         isActive
                           ? "bg-slate-700/50 text-white border-l-2 border-slate-400"
