@@ -133,33 +133,33 @@ const CertificationCard = ({
 }) => (
   <button
     onClick={() => onOpenModal(cert)}
-    className={`bg-gray-700/40 border border-gray-600 rounded-lg p-4 sm:p-6 transition-all duration-300 hover:border-gray-500 hover:bg-gray-700/60 text-left group cursor-pointer transform ${
+    className={`w-full bg-gray-700/40 border border-gray-600 rounded-lg p-5 sm:p-6 transition-all duration-300 hover:border-gray-500 hover:bg-gray-700/60 text-left group cursor-pointer transform ${
       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
     }`}
     style={{ transitionDelay: isVisible ? `${index * 50}ms` : "0ms" }}
     aria-label={`View details for ${cert.title}`}
   >
-    <div className="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4">
-      <div className="p-2 sm:p-3 bg-gray-600/40 rounded-lg border border-gray-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-4">
+      <div className="p-2.5 sm:p-3 bg-gray-600/40 rounded-lg border border-gray-600 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
         {cert.icon}
       </div>
       <div className="flex-1 min-w-0">
-        <h3 className="text-white text-sm sm:text-base font-medium leading-tight mb-0.5 sm:mb-1 group-hover:text-slate-100 transition-colors line-clamp-2">
+        <h3 className="text-white text-base sm:text-base font-medium leading-tight mb-1 group-hover:text-slate-100 transition-colors line-clamp-2">
           {cert.title}
         </h3>
-        <p className="text-gray-400 text-xs sm:text-sm">{cert.org}</p>
+        <p className="text-gray-400 text-sm">{cert.org}</p>
       </div>
     </div>
 
     <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-      <span className={`text-xs px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full border ${getBadgeColor(cert.level)}`}>
+      <span className={`text-xs px-3 py-1 rounded-full border ${getBadgeColor(cert.level)}`}>
         {cert.level}
       </span>
       <span className="text-gray-500 text-xs">{cert.year}</span>
     </div>
 
-    <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-600/50 flex items-center justify-between">
-      <div className="flex items-center gap-1.5 sm:gap-2">
+    <div className="mt-4 pt-4 border-t border-gray-600/50 flex items-center justify-between">
+      <div className="flex items-center gap-2">
         <CheckCircle className="w-4 h-4 text-slate-500 flex-shrink-0" />
         <span className="text-slate-400 text-xs">Verified</span>
       </div>
