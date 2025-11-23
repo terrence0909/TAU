@@ -1,6 +1,14 @@
 import { ArrowDown } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleHashNavigation = (hash: string) => {
+    // Use React Router's navigate with hash
+    navigate(`/#${hash}`);
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dark Gray Gradient Background */}
@@ -32,20 +40,20 @@ const Hero = () => {
             Specializing in AWS, infrastructure as code, and automated deployment pipelines.
           </p>
 
-          {/* Clean CTA Buttons */}
+          {/* Clean CTA Buttons - FIXED */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-            <a
-              href="#projects"
+            <button
+              onClick={() => handleHashNavigation('projects')}
               className="px-6 py-3 bg-white text-gray-900 rounded-md font-medium hover:bg-gray-100 transition-colors duration-200 border border-white shadow-sm"
             >
               View Projects
-            </a>
-            <a
-              href="#contact"
+            </button>
+            <button
+              onClick={() => handleHashNavigation('contact')}
               className="px-6 py-3 border border-gray-600 text-gray-200 rounded-md font-medium hover:border-gray-500 hover:bg-gray-700/50 transition-colors duration-200 shadow-sm"
             >
               Contact Me
-            </a>
+            </button>
           </div>
 
           {/* Minimal Trust Indicators */}
@@ -56,14 +64,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Subtle Scroll Indicator */}
-      <a
-        href="#about"
+      {/* Subtle Scroll Indicator - FIXED */}
+      <button
+        onClick={() => handleHashNavigation('about')}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 group"
         aria-label="Scroll to about section"
       >
         <ArrowDown className="text-gray-400 group-hover:text-gray-200 transition-colors duration-300" size={20} />
-      </a>
+      </button>
     </section>
   );
 };
