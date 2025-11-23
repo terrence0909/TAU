@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("about");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,12 +42,23 @@ const Navigation = () => {
     e.preventDefault();
     const href = e.currentTarget.getAttribute("href");
     if (href) {
-      const element = document.querySelector(href);
+      const sectionId = href.substring(1); // Remove the #
+      // Update URL with React Router
+      navigate(`/#${sectionId}`);
+      // Scroll to section
+      const element = document.getElementById(sectionId);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
         setIsMobileMenuOpen(false);
       }
     }
+  };
+
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    // Update URL and scroll to top
+    navigate("/#");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
@@ -61,10 +74,7 @@ const Navigation = () => {
           {/* Logo */}
           <a
             href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
+            onClick={handleLogoClick}
             className="text-xl font-semibold text-white tracking-wide hover:text-slate-300 transition-colors duration-200"
           >
             TAU

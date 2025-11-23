@@ -1,12 +1,23 @@
 import { ArrowDown } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
   const navigate = useNavigate();
 
-  const handleHashNavigation = (hash: string) => {
-    // Use React Router's navigate with hash
-    navigate(`/#${hash}`);
+  const scrollToSection = (sectionId: string) => {
+    // First update the URL with hash
+    navigate(`/#${sectionId}`);
+    
+    // Then scroll to the section
+    setTimeout(() => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 100); // Small delay to ensure URL update is processed
   };
 
   return (
@@ -43,13 +54,13 @@ const Hero = () => {
           {/* Clean CTA Buttons - FIXED */}
           <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
             <button
-              onClick={() => handleHashNavigation('projects')}
+              onClick={() => scrollToSection('projects')}
               className="px-6 py-3 bg-white text-gray-900 rounded-md font-medium hover:bg-gray-100 transition-colors duration-200 border border-white shadow-sm"
             >
               View Projects
             </button>
             <button
-              onClick={() => handleHashNavigation('contact')}
+              onClick={() => scrollToSection('contact')}
               className="px-6 py-3 border border-gray-600 text-gray-200 rounded-md font-medium hover:border-gray-500 hover:bg-gray-700/50 transition-colors duration-200 shadow-sm"
             >
               Contact Me
@@ -66,7 +77,7 @@ const Hero = () => {
 
       {/* Subtle Scroll Indicator - FIXED */}
       <button
-        onClick={() => handleHashNavigation('about')}
+        onClick={() => scrollToSection('about')}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 group"
         aria-label="Scroll to about section"
       >
