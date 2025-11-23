@@ -133,7 +133,7 @@ const CertificationCard = ({
 }) => (
   <button
     onClick={() => onOpenModal(cert)}
-    className={`w-full bg-gray-700/40 border border-gray-600 rounded-lg p-5 sm:p-6 transition-all duration-300 hover:border-gray-500 hover:bg-gray-700/60 text-left group cursor-pointer transform ${
+    className={`bg-gray-700/40 border border-gray-600 rounded-lg p-5 sm:p-6 transition-all duration-300 hover:border-gray-500 hover:bg-gray-700/60 text-left group cursor-pointer transform ${
       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
     }`}
     style={{ transitionDelay: isVisible ? `${index * 50}ms` : "0ms" }}
