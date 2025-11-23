@@ -1,23 +1,22 @@
 import { ArrowDown } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
-    // First update the URL with hash
-    navigate(`/#${sectionId}`);
-    
-    // Then scroll to the section
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }, 100); // Small delay to ensure URL update is processed
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      window.history.pushState(null, "", `#${sectionId}`);
+    }
   };
 
   return (
@@ -31,12 +30,16 @@ const Hero = () => {
       <div className="container mx-auto px-6 z-10">
         <div className="text-center">
           {/* Name */}
-          <h1 className="text-4xl md:text-6xl font-light text-white mb-4 tracking-tight">
+          <h1 className={`text-4xl md:text-6xl font-light text-white mb-4 tracking-tight transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
             Tshepo Tau
           </h1>
           
           {/* Title */}
-          <div className="mb-6">
+          <div className={`mb-6 transition-all duration-1000 delay-200 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
             <p className="text-lg md:text-xl text-gray-200 font-medium">
               Cloud & DevOps Engineer
             </p>
@@ -46,42 +49,53 @@ const Hero = () => {
           </div>
 
           {/* Description */}
-          <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8 font-light">
+          <p className={`text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-8 font-light transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
             Building scalable, secure cloud infrastructure with modern DevOps practices. 
             Specializing in AWS, infrastructure as code, and automated deployment pipelines.
           </p>
 
-          {/* Clean CTA Buttons - FIXED */}
-          <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+          {/* CTA Buttons */}
+          <div className={`flex flex-col sm:flex-row gap-3 justify-center items-center transition-all duration-1000 delay-400 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
             <button
               onClick={() => scrollToSection('projects')}
-              className="px-6 py-3 bg-white text-gray-900 rounded-md font-medium hover:bg-gray-100 transition-colors duration-200 border border-white shadow-sm"
+              className="px-6 py-3 bg-white text-gray-900 rounded-md font-medium hover:bg-gray-100 transition-colors duration-200 border border-white shadow-sm hover:shadow-md"
+              aria-label="View projects section"
             >
               View Projects
             </button>
             <button
               onClick={() => scrollToSection('contact')}
-              className="px-6 py-3 border border-gray-600 text-gray-200 rounded-md font-medium hover:border-gray-500 hover:bg-gray-700/50 transition-colors duration-200 shadow-sm"
+              className="px-6 py-3 border border-gray-600 text-gray-200 rounded-md font-medium hover:border-gray-500 hover:bg-gray-700/50 transition-colors duration-200 shadow-sm hover:shadow-md"
+              aria-label="Contact me"
             >
               Contact Me
             </button>
           </div>
 
-          {/* Minimal Trust Indicators */}
-          <div className="mt-12 flex justify-center gap-6 text-xs text-gray-400">
+          {/* Trust Indicators */}
+          <div className={`mt-12 flex justify-center gap-6 text-xs text-gray-400 transition-all duration-1000 delay-500 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          }`}>
             <span>📍 Johannesburg, South Africa</span>
             <span>✅ Available for opportunities</span>
           </div>
         </div>
       </div>
 
-      {/* Subtle Scroll Indicator - FIXED */}
+      {/* Scroll Indicator */}
       <button
         onClick={() => scrollToSection('about')}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 group"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 group"
         aria-label="Scroll to about section"
       >
-        <ArrowDown className="text-gray-400 group-hover:text-gray-200 transition-colors duration-300" size={20} />
+        <ArrowDown 
+          className="text-gray-400 group-hover:text-gray-200 transition-colors duration-300 animate-bounce" 
+          size={20} 
+        />
       </button>
     </section>
   );
