@@ -1,73 +1,173 @@
-# Welcome to your Lovable project
+# TAU Portfolio
 
-## Project info
+A modern, responsive portfolio website showcasing cloud engineering expertise, full-stack projects, and professional experience. Built with React, TypeScript, and Tailwind CSS for a clean, performant user experience.
 
-**URL**: https://lovable.dev/projects/2027c57b-8115-4b47-ab21-d5a28979b58d
+## 🌐 Live Demo
 
-## How can I edit this code?
+Visit: https://github.com/terrence0909/TAU
 
-There are several ways of editing your application.
+## 📋 Overview
 
-**Use Lovable**
+This portfolio website serves as a professional showcase for cloud engineering work, featuring project highlights, technical skills, and contact information. The site is optimized for performance, accessibility, and mobile responsiveness.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/2027c57b-8115-4b47-ab21-d5a28979b58d) and start prompting.
+## ✨ Features
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Clean, Modern Design** - Minimalist aesthetic with smooth animations and transitions
+- **Responsive Layout** - Fully optimized for desktop, tablet, and mobile devices
+- **Project Showcase** - Highlight key projects with descriptions and links
+- **Contact Integration** - Built-in contact form powered by Formspree
+- **Fast Performance** - Optimized bundle size and lazy loading
+- **Dark Theme** - Eye-friendly dark mode design with high contrast
 
-**Use your preferred IDE**
+## 🛠️ Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **Frontend Framework**: React 18 with TypeScript
+- **Build Tool**: Vite (lightning-fast development and production builds)
+- **Styling**: Tailwind CSS for utility-first responsive design
+- **UI Components**: shadcn/ui for accessible, customizable components
+- **Icons**: Lucide React for clean, consistent iconography
+- **Form Handling**: Formspree for email submissions
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- Node.js 16+ and npm installed ([install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Local Development
 
-# Step 3: Install the necessary dependencies.
-npm i
+```bash
+# Clone the repository
+git clone https://github.com/terrence0909/TAU.git
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Navigate to the project directory
+cd TAU
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+The site will be available at `http://localhost:5173` with hot module reloading enabled.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Build for Production
 
-**Use GitHub Codespaces**
+```bash
+# Create an optimized production build
+npm run build
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Preview the production build locally
+npm run preview
+```
 
-## What technologies are used for this project?
+## 📁 Project Structure
 
-This project is built with:
+```
+TAU/
+├── src/
+│   ├── components/          # Reusable React components
+│   │   ├── Header.tsx
+│   │   ├── Hero.tsx
+│   │   ├── Projects.tsx
+│   │   ├── Skills.tsx
+│   │   └── Contact.tsx
+│   ├── pages/               # Page components
+│   ├── App.tsx              # Main application component
+│   └── main.tsx             # Entry point
+├── public/                  # Static assets
+├── tailwind.config.js       # Tailwind CSS configuration
+├── tsconfig.json            # TypeScript configuration
+├── vite.config.ts          # Vite configuration
+└── package.json            # Project dependencies
+```
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔧 Editing Your Portfolio
 
-## How can I deploy this project?
+### Option 1: Local Development
+Clone the repo and edit files locally in your preferred IDE. This is the recommended approach for making changes and pushing updates.
 
-Simply open [Lovable](https://lovable.dev/projects/2027c57b-8115-4b47-ab21-d5a28979b58d) and click on Share -> Publish.
+### Option 2: GitHub Web Editor
+Click the edit (pencil) icon on any file to make quick changes directly on GitHub.
 
-## Can I connect a custom domain to my Lovable project?
+### Option 3: GitHub Codespaces
+Use GitHub's cloud development environment for editing without local setup.
 
-Yes, you can!
+## 📧 Contact Form Setup
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+The contact form is integrated with Formspree. To set up email notifications:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+1. Sign up at [formspree.io](https://formspree.io)
+2. Get your form ID
+3. Update the form endpoint in `src/components/Contact.tsx`:
+   ```javascript
+   const response = await fetch("https://formspree.io/f/YOUR_FORM_ID", {
+   ```
+
+## 🌐 Custom Domain
+
+To connect a custom domain:
+
+1. Go to **Project Settings** → **Domains**
+2. Click **Connect Domain**
+3. Follow the DNS configuration instructions
+
+Read more: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## 📦 Available Scripts
+
+```bash
+npm run dev         # Start development server with HMR
+npm run build       # Build optimized production bundle
+npm run preview     # Preview production build locally
+npm run lint        # Run code quality checks (if configured)
+```
+
+## 🎨 Customization
+
+### Colors & Theme
+Edit `tailwind.config.js` to customize the color palette and design tokens.
+
+### Content
+Update component content in `src/components/` to reflect your projects, skills, and experience.
+
+### Typography
+Modify font sizes and styles in Tailwind classes throughout the components.
+
+## ⚡ Performance Optimization
+
+- Optimized images with lazy loading
+- Code splitting with Vite
+- Minified production builds
+- Responsive design reduces unnecessary rendering
+
+## 📱 Browser Support
+
+- Chrome/Edge (latest)
+- Firefox (latest)
+- Safari (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+
+## 🔒 Security
+
+- No external data exposure
+- Form submissions encrypted via Formspree
+- No sensitive credentials in repository
+- Content Security Policy friendly
+
+## 📄 License
+
+This project is open source and available under the MIT License.
+
+## 🤝 Contributing
+
+Feel free to fork, modify, and improve this portfolio template for your own use.
+
+## 💬 Questions?
+
+Have questions about the setup or customization? Reach out via the contact form or check the [Lovable Documentation](https://docs.lovable.dev).
+
+---
+
+**Built by Tshepo Tau** | Cloud Engineer | Full-Stack Developer
